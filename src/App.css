@@ -167,10 +167,11 @@ footer p {
 
   .logo {
     display: flex;
+    align-items: center;
   }
 
   .logo-img {
-    width: 150px;
+    width: 200px;
   }
 
   .menu-icon {
@@ -203,5 +204,16 @@ footer p {
 
   .card-img {
     float: none;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .menu-icon {
+    height: 40px;
+    width: 40px;
+  }
+
+  .logo-img {
+    width: 140px;
   }
 }
