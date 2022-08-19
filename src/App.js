@@ -1,23 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import Main from './components/Main/Main';
+import Sidebar from './components/Sidebar/Sidebar';
+import { useEffect, useState } from 'react';
 
 function App() {
+  const [navMobile, setNavMobile] = useState(false);
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleWindowResize = () => setWidth(window.innerWidth);
+    window.addEventListener('resize', handleWindowResize);
+
+    if (width <= 1024) {
+      setNavMobile(false);
+    }
+
+    return () => window.removeEventListener('resize', handleWindowResize);
+  }, [width]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Sidebar navMobile={navMobile} />
+      <Main navMobile={navMobile} setNavMobile={setNavMobile} />
     </div>
   );
 }
